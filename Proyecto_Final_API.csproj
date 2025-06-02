@@ -423,6 +423,7 @@
     <Content Include="Models\INMOBILIARIAEntities.edmx.diagram">
       <DependentUpon>INMOBILIARIAEntities.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\site27644-WebDeploy.pubxml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
