@@ -219,7 +219,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-
+    <Compile Include="Clases\clsCLIENTE.cs" />
+    <Compile Include="Clases\clsTIPOS_VISITA.cs" />
+    <Compile Include="Clases\clsVENTA.cs" />
+    <Compile Include="Clases\clsVISITA.cs" />
+    <Compile Include="Clases\clsARRIENDO.cs" />
     <Compile Include="Clases\clsCONSIGNACIONE.cs" />
     <Compile Include="Clases\clsCIUDAD.cs" />
     <Compile Include="Clases\clsCypher.cs" />
@@ -241,7 +245,11 @@
     <Compile Include="Clases\clsPROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
-
+    <Compile Include="Controllers\CLIENTEsController.cs" />
+    <Compile Include="Controllers\TIPOS_VISITAsController.cs" />
+    <Compile Include="Controllers\VENTAsController.cs" />
+    <Compile Include="Controllers\VISITAsController.cs" />
+    <Compile Include="Controllers\ARRIENDOsController.cs" />
     <Compile Include="Controllers\CONSIGNACIONEsController.cs" />
     <Compile Include="Controllers\CIUDADEsController.cs" />
     <Compile Include="Controllers\DETALLES_ORDENsController.cs" />
