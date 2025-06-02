@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using royecto_Final_API.Models;
+using Proyecto_Final_API.Models;
 
 namespace Proyecto_Final_API.Clases
 {
     public class clsORDENES_COMPRA
     {
-        private readonly INMOBILIARIAEntities db = new INMOBILIARIAEntities();
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
         public ORDENES_COMPRA entidad { get; set; }
 
         public string Insertar()

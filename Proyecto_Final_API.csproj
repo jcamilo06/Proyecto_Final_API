@@ -225,10 +225,11 @@
     <Compile Include="Clases\clsESTADOS_PROPIEDAD.cs" />
     <Compile Include="Clases\clsLogin.cs" />
     <Compile Include="Clases\clsORDENES_COMPRA.cs" />
+    <Compile Include="Clases\clsPROPIEDADE.cs" />
     <Compile Include="Clases\clsPROVEEDORE.cs" />
     <Compile Include="Clases\clsTIPOS_PROVEEDOR.cs" />
     <Compile Include="Clases\clsUsuario.cs" />
-    <Compile Include="Clases\PROPIEDADES_MODELO.cs" />
+    <Compile Include="Clases\clsPROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
     <Compile Include="Controllers\DETALLES_ORDENsController.cs" />

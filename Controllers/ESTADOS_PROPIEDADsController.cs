@@ -1,9 +1,15 @@
-﻿using Borrador.Clases;
-using Borrador.Models;
+﻿using Inmobiliaria.Models;
+using Proyecto_Final_API.Clases;
+using Proyecto_Final_API.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
-namespace Borrador.Controllers
+namespace Proyecto_Final_API.Controllers
 {
     [RoutePrefix("api/estados_propiedad")]
     public class ESTADOS_PROPIEDADsController : ApiController

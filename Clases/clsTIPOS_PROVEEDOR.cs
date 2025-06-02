@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Proyecto_Final_API.Clases.Models;
+using Proyecto_Final_API.Models;
 
 namespace Proyecto_Final_API.Clases
-
+{ 
     public class clsTIPOS_PROVEEDOR
     {
-        private readonly INMOBILIARIAEntities db = new INMOBILIARIAEntities();
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
         public TIPOS_PROVEEDOR entidad { get; set; }
 
         public string Insertar()

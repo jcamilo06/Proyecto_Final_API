@@ -8,7 +8,7 @@ namespace Proyecto_Final_API.Clases
 {
     public class clsEMPLEADO
     {
-        private readonly INMOBILIARIAEntities db = new INMOBILIARIAEntities();
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
         public EMPLEADO entidad { get; set; }
 
         public string Insertar()

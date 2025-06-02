@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
-using Borrador.Models;
+using Proyecto_Final_API.Models;
 
-namespace Borrador.Clases
+namespace Proyecto_Final_API.Clases
 {
     public class clsESTADOS_PROPIEDAD
     {
-        private readonly INMOBILIARIAEntities db = new INMOBILIARIAEntities();
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
+
         public ESTADOS_PROPIEDAD entidad { get; set; }
 
         public string Insertar()
