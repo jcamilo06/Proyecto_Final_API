@@ -226,12 +226,13 @@
     <Compile Include="Clases\clsPROVEEDORE.cs" />
     <Compile Include="Clases\clsTIPOS_PROVEEDOR.cs" />
     <Compile Include="Clases\clsUsuario.cs" />
-    <Compile Include="Clases\PROPIEDADES_MODELO.cs" />
+    <Compile Include="Clases\clsPROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
     <Compile Include="Controllers\DETALLES_ORDENsController.cs" />
     <Compile Include="Controllers\EMPLEADOsController.cs" />
     <Compile Include="Controllers\ORDENES_COMPRAsController.cs" />
+    <Compile Include="Controllers\PROPIEDADES_MODELOsController.cs" />
     <Compile Include="Controllers\PROVEEDOREsController.cs" />
     <Compile Include="Controllers\TIPOS_PROVEEDORsController.cs" />
     <Compile Include="Controllers\UsuarioSeedController.cs" />
