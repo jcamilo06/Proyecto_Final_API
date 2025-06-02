@@ -221,6 +221,7 @@
     <Compile Include="Clases\clsCypher.cs" />
     <Compile Include="Clases\clsLogin.cs" />
     <Compile Include="Clases\clsUsuario.cs" />
+    <Compile Include="Clases\PROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
     <Compile Include="Controllers\UsuarioSeedController.cs" />
