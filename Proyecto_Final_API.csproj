@@ -229,6 +229,7 @@
     <Compile Include="Clases\clsPROPIEDADE.cs" />
     <Compile Include="Clases\clsPROPIETARIO.cs" />
     <Compile Include="Clases\clsPROVEEDORE.cs" />
+    <Compile Include="Clases\clsTIPOS_PROPIEDAD.cs" />
     <Compile Include="Clases\clsTIPOS_PROVEEDOR.cs" />
     <Compile Include="Clases\clsUsuario.cs" />
     <Compile Include="Clases\clsPROPIEDADES_MODELO.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Controllers\PROPIEDADEsController.cs" />
     <Compile Include="Controllers\PROPIETARIOsController.cs" />
     <Compile Include="Controllers\PROVEEDOREsController.cs" />
+    <Compile Include="Controllers\TIPOS_PROPIEDADsController.cs" />
     <Compile Include="Controllers\TIPOS_PROVEEDORsController.cs" />
     <Compile Include="Controllers\UsuarioSeedController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -428,6 +430,7 @@
     <Folder Include="Views\ESTADOS_PROPIEDADs\" />
     <Folder Include="Views\PROPIEDADEs\" />
     <Folder Include="Views\PROPIETARIOs\" />
+    <Folder Include="Views\TIPOS_PROPIEDADs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
