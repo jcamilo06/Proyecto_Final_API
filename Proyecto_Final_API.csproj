@@ -187,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -221,16 +222,19 @@
     <Compile Include="Clases\clsCypher.cs" />
     <Compile Include="Clases\clsDETALLES_ORDEN.cs" />
     <Compile Include="Clases\clsEMPLEADO.cs" />
+    <Compile Include="Clases\clsESTADOS_PROPIEDAD.cs" />
     <Compile Include="Clases\clsLogin.cs" />
     <Compile Include="Clases\clsORDENES_COMPRA.cs" />
+    <Compile Include="Clases\clsPROPIEDADE.cs" />
     <Compile Include="Clases\clsPROVEEDORE.cs" />
     <Compile Include="Clases\clsTIPOS_PROVEEDOR.cs" />
     <Compile Include="Clases\clsUsuario.cs" />
-    <Compile Include="Clases\PROPIEDADES_MODELO.cs" />
+    <Compile Include="Clases\clsPROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
     <Compile Include="Controllers\DETALLES_ORDENsController.cs" />
     <Compile Include="Controllers\EMPLEADOsController.cs" />
+    <Compile Include="Controllers\ESTADOS_PROPIEDADsController.cs" />
     <Compile Include="Controllers\ORDENES_COMPRAsController.cs" />
     <Compile Include="Controllers\PROVEEDOREsController.cs" />
     <Compile Include="Controllers\TIPOS_PROVEEDORsController.cs" />
@@ -414,6 +418,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
+    <Folder Include="Views\ESTADOS_PROPIEDADs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />

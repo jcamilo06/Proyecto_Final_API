@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Proyecto_Final_API.Models;
 
 namespace Proyecto_Final_API.Clases
 {
-    public class PROPIEDADES_MODELO
+    public class clsPROPIEDADES_MODELO
     {
-        private readonly INMOBILIARIAEntities db = new INMOBILIARIAEntities();
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
         public PROPIEDADES_MODELO entidad { get; set; }
 
         public string Insertar()

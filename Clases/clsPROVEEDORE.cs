@@ -8,7 +8,7 @@ namespace Proyecto_Final_API.Clases
 {
     public class clsPROVEEDORE
     {
-        private readonly INMOBILIARIAEntities db = new INMOBILIARIAEntities();
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
         public PROVEEDORE entidad { get; set; }
 
         public string Insertar()
