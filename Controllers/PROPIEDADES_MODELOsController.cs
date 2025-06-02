@@ -38,7 +38,7 @@ namespace Proyecto_Final_API.Controllers
             return resultado.StartsWith("Error") ? (IHttpActionResult)BadRequest(resultado) : Ok(resultado);
         }
 
-        [HttpPut]
+        [HttpPut] git fetch origin
         [Route("Actualizar")]
         public IHttpActionResult Actualizar([FromBody] PROPIEDADES_MODELO entidad)
         {
