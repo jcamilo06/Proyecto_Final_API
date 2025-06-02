@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using Proyecto_Final_API.Models;
 using System.Data.Entity;
 
@@ -8,8 +10,8 @@ namespace Proyecto_Final_API.Clases
 {
     public class clsPROPIEDADES_MODELO
     {
-        private INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
-        public clsPROPIEDADES_MODELO entidad { get; set; }
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
+        public PROPIEDADES_MODELO entidad { get; set; }
 
         public string Insertar()
         {
@@ -25,7 +27,7 @@ namespace Proyecto_Final_API.Clases
                     ? DateTime.Now
                     : entidad.FECHA_DECORACION;
 
-                db.PROPIEDADES_MODELO.Add(new clsPROPIEDADES_MODELO
+                db.PROPIEDADES_MODELO.Add(new PROPIEDADES_MODELO
                 {
                     ID_PROPIEDAD = entidad.ID_PROPIEDAD,
                     ID_PROYECTO = entidad.ID_PROYECTO,

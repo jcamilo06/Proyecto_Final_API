@@ -8,7 +8,7 @@ namespace Proyecto_Final_API.Clases
 {
     public class clsDETALLES_ORDEN
     {
-        private readonly INMOBILIARIAEntities db = new INMOBILIARIAEntities();
+        private readonly INMOBILIARIAEntities1 db = new INMOBILIARIAEntities1();
         public DETALLES_ORDEN entidad { get; set; }
 
         public string Insertar()
