@@ -224,6 +224,7 @@
     <Compile Include="Clases\PROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
+    <Compile Include="Controllers\PROPIEDADES_MODELOsController.cs" />
     <Compile Include="Controllers\UsuarioSeedController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />

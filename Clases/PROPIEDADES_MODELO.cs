@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Proyecto_Final_API.Models;
 
 namespace Proyecto_Final_API.Clases
 {
