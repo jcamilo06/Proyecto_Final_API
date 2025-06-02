@@ -219,32 +219,45 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+
+    <Compile Include="Clases\clsCONSIGNACIONE.cs" />
     <Compile Include="Clases\clsCIUDAD.cs" />
     <Compile Include="Clases\clsCypher.cs" />
     <Compile Include="Clases\clsDETALLES_ORDEN.cs" />
     <Compile Include="Clases\clsEMPLEADO.cs" />
     <Compile Include="Clases\clsESTADOS_PROPIEDAD.cs" />
+    <Compile Include="Clases\clsIMAGENES_PROPIEDAD.cs" />
     <Compile Include="Clases\clsLogin.cs" />
     <Compile Include="Clases\clsORDENES_COMPRA.cs" />
     <Compile Include="Clases\clsPROPIEDADE.cs" />
+    <Compile Include="Clases\clsPROPIETARIO.cs" />
     <Compile Include="Clases\clsPROVEEDORE.cs" />
+    <Compile Include="Clases\clsTIPOS_PROPIEDAD.cs" />
     <Compile Include="Clases\clsPROYECTO.cs" />
     <Compile Include="Clases\clsSEDE.cs" />
     <Compile Include="Clases\clsTIPOS_PROVEEDOR.cs" />
+    <Compile Include="Clases\clsUpload.cs" />
     <Compile Include="Clases\clsUsuario.cs" />
     <Compile Include="Clases\clsPROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
+
+    <Compile Include="Controllers\CONSIGNACIONEsController.cs" />
     <Compile Include="Controllers\CIUDADEsController.cs" />
     <Compile Include="Controllers\DETALLES_ORDENsController.cs" />
     <Compile Include="Controllers\EMPLEADOsController.cs" />
     <Compile Include="Controllers\ESTADOS_PROPIEDADsController.cs" />
     <Compile Include="Controllers\ORDENES_COMPRAsController.cs" />
+    <Compile Include="Controllers\PROPIEDADEsController.cs" />
+    <Compile Include="Controllers\PROPIETARIOsController.cs" />
+    <Compile Include="Controllers\PROVEEDOREsController.cs" />
+    <Compile Include="Controllers\TIPOS_PROPIEDADsController.cs" />
     <Compile Include="Controllers\PROPIEDADES_MODELOsController.cs" />
     <Compile Include="Controllers\PROVEEDOREsController.cs" />
     <Compile Include="Controllers\PROYECTOsController.cs" />
     <Compile Include="Controllers\SEDEsController.cs" />
     <Compile Include="Controllers\TIPOS_PROVEEDORsController.cs" />
+    <Compile Include="Controllers\UploadFilesController.cs" />
     <Compile Include="Controllers\UsuarioSeedController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -425,8 +438,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Archivos\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\CONSIGNACIONEs\" />
     <Folder Include="Views\ESTADOS_PROPIEDADs\" />
+    <Folder Include="Views\PROPIEDADEs\" />
+    <Folder Include="Views\PROPIETARIOs\" />
+    <Folder Include="Views\TIPOS_PROPIEDADs\" />
+    <Folder Include="Views\UploadFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
