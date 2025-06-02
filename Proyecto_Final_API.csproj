@@ -236,6 +236,7 @@
     <Compile Include="Controllers\EMPLEADOsController.cs" />
     <Compile Include="Controllers\ESTADOS_PROPIEDADsController.cs" />
     <Compile Include="Controllers\ORDENES_COMPRAsController.cs" />
+    <Compile Include="Controllers\PROPIEDADEsController.cs" />
     <Compile Include="Controllers\PROVEEDOREsController.cs" />
     <Compile Include="Controllers\TIPOS_PROVEEDORsController.cs" />
     <Compile Include="Controllers\UsuarioSeedController.cs" />
@@ -420,6 +421,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
     <Folder Include="Views\ESTADOS_PROPIEDADs\" />
+    <Folder Include="Views\PROPIEDADEs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
