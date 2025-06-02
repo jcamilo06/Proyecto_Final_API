@@ -75,7 +75,6 @@
           <Property Name="FECHA_INGRESO" Type="date" Nullable="false" />
           <Property Name="SALARIO" Type="decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="ID_SEDE" Type="int" Nullable="false" />
-          <Property Name="ID_USUARIO" Type="int" />
         </EntityType>
         <EntityType Name="ESTADOS_PROPIEDAD">
           <Key>
@@ -101,6 +100,14 @@
           <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="FECHA_ORDEN" Type="date" Nullable="false" />
           <Property Name="TOTAL" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERFIL">
+          <Key>
+            <PropertyRef Name="ID_PERFIL" />
+          </Key>
+          <Property Name="ID_PERFIL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PAGINA_NAVEGAR" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="PROPIEDADES">
           <Key>
@@ -197,15 +204,26 @@
           <Property Name="ID_TIPO_VISITA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="USUARIOS">
+        <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EMAIL" Type="varchar" MaxLength="120" Nullable="false" />
-          <Property Name="CONTRASENA" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="ROL" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="FECHA_REGISTRO" Type="datetime" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CLAVE" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="SALT" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ES_EMPLEADO" Type="bit" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="int" />
+          <Property Name="ID_CLIENTE" Type="int" />
+        </EntityType>
+        <EntityType Name="USUARIO_PERFIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="ID_PERFIL" Type="int" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VENTAS">
           <Key>
@@ -317,19 +335,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMPLEADOS__ID_US__151B244E">
-          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
-          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIOS">
-              <PropertyRef Name="ID_USUARIO" />
-            </Principal>
-            <Dependent Role="EMPLEADOS">
-              <PropertyRef Name="ID_USUARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__IMAGENES___ID_PR__14270015">
+        <Association Name="FK__IMAGENES___ID_PR__0F624AF8">
           <End Role="PROPIEDADES" Type="Self.PROPIEDADES" Multiplicity="1" />
           <End Role="IMAGENES_PROPIEDAD" Type="Self.IMAGENES_PROPIEDAD" Multiplicity="*" />
           <ReferentialConstraint>
@@ -461,6 +467,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__USUARIO_P__ID_PE__1CBC4616">
+          <End Role="PERFIL" Type="Self.PERFIL" Multiplicity="1" />
+          <End Role="USUARIO_PERFIL" Type="Self.USUARIO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFIL">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="USUARIO_PERFIL">
+              <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO_P__ID_US__1BC821DD">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO_PERFIL" Type="Self.USUARIO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="USUARIO_PERFIL">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__VENTAS__ID_CLIEN__7A672E12">
           <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
           <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
@@ -545,6 +575,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USUARIO_CLIENTE">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIO_EMPLEADO">
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="INMOBILIARIAModelStoreContainer">
           <EntitySet Name="ARRIENDOS" EntityType="Self.ARRIENDOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CIUDADES" EntityType="Self.CIUDADES" Schema="dbo" store:Type="Tables" />
@@ -555,6 +609,7 @@
           <EntitySet Name="ESTADOS_PROPIEDAD" EntityType="Self.ESTADOS_PROPIEDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMAGENES_PROPIEDAD" EntityType="Self.IMAGENES_PROPIEDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDENES_COMPRA" EntityType="Self.ORDENES_COMPRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERFIL" EntityType="Self.PERFIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROPIEDADES" EntityType="Self.PROPIEDADES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROPIEDADES_MODELO" EntityType="Self.PROPIEDADES_MODELO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROPIETARIOS" EntityType="Self.PROPIETARIOS" Schema="dbo" store:Type="Tables" />
@@ -564,7 +619,8 @@
           <EntitySet Name="TIPOS_PROPIEDAD" EntityType="Self.TIPOS_PROPIEDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOS_PROVEEDOR" EntityType="Self.TIPOS_PROVEEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOS_VISITA" EntityType="Self.TIPOS_VISITA" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO_PERFIL" EntityType="Self.USUARIO_PERFIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VENTAS" EntityType="Self.VENTAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VISITAS" EntityType="Self.VISITAS" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__ARRIENDOS__ID_EM__00200768" Association="Self.FK__ARRIENDOS__ID_EM__00200768">
@@ -595,11 +651,7 @@
             <End Role="SEDES" EntitySet="SEDES" />
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
           </AssociationSet>
-          <AssociationSet Name="FK__EMPLEADOS__ID_US__151B244E" Association="Self.FK__EMPLEADOS__ID_US__151B244E">
-            <End Role="USUARIOS" EntitySet="USUARIOS" />
-            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
-          </AssociationSet>
-          <AssociationSet Name="FK__IMAGENES___ID_PR__14270015" Association="Self.FK__IMAGENES___ID_PR__14270015">
+          <AssociationSet Name="FK__IMAGENES___ID_PR__0F624AF8" Association="Self.FK__IMAGENES___ID_PR__0F624AF8">
             <End Role="PROPIEDADES" EntitySet="PROPIEDADES" />
             <End Role="IMAGENES_PROPIEDAD" EntitySet="IMAGENES_PROPIEDAD" />
           </AssociationSet>
@@ -643,6 +695,14 @@
             <End Role="CIUDADES" EntitySet="CIUDADES" />
             <End Role="SEDES" EntitySet="SEDES" />
           </AssociationSet>
+          <AssociationSet Name="FK__USUARIO_P__ID_PE__1CBC4616" Association="Self.FK__USUARIO_P__ID_PE__1CBC4616">
+            <End Role="PERFIL" EntitySet="PERFIL" />
+            <End Role="USUARIO_PERFIL" EntitySet="USUARIO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO_P__ID_US__1BC821DD" Association="Self.FK__USUARIO_P__ID_US__1BC821DD">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO_PERFIL" EntitySet="USUARIO_PERFIL" />
+          </AssociationSet>
           <AssociationSet Name="FK__VENTAS__ID_CLIEN__7A672E12" Association="Self.FK__VENTAS__ID_CLIEN__7A672E12">
             <End Role="CLIENTES" EntitySet="CLIENTES" />
             <End Role="VENTAS" EntitySet="VENTAS" />
@@ -670,6 +730,14 @@
           <AssociationSet Name="FK__VISITAS__ID_TIPO__05D8E0BE" Association="Self.FK__VISITAS__ID_TIPO__05D8E0BE">
             <End Role="TIPOS_VISITA" EntitySet="TIPOS_VISITA" />
             <End Role="VISITAS" EntitySet="VISITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_CLIENTE" Association="Self.FK_USUARIO_CLIENTE">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_EMPLEADO" Association="Self.FK_USUARIO_EMPLEADO">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -719,6 +787,7 @@
           <NavigationProperty Name="ARRIENDOS" Relationship="Self.FK__ARRIENDOS__ID_IN__7F2BE32F" FromRole="CLIENTES" ToRole="ARRIENDOS" />
           <NavigationProperty Name="VENTAS" Relationship="Self.FK__VENTAS__ID_CLIEN__7A672E12" FromRole="CLIENTES" ToRole="VENTAS" />
           <NavigationProperty Name="VISITAS" Relationship="Self.FK__VISITAS__ID_CLIE__03F0984C" FromRole="CLIENTES" ToRole="VISITAS" />
+          <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_CLIENTE" FromRole="CLIENTES" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="CONSIGNACIONE">
           <Key>
@@ -759,13 +828,12 @@
           <Property Name="FECHA_INGRESO" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SALARIO" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="ID_SEDE" Type="Int32" Nullable="false" />
-          <Property Name="ID_USUARIO" Type="Int32" />
           <NavigationProperty Name="ARRIENDOS" Relationship="Self.FK__ARRIENDOS__ID_EM__00200768" FromRole="EMPLEADOS" ToRole="ARRIENDOS" />
           <NavigationProperty Name="SEDE" Relationship="Self.FK__EMPLEADOS__ID_SE__628FA481" FromRole="EMPLEADOS" ToRole="SEDES" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.FK__EMPLEADOS__ID_US__151B244E" FromRole="EMPLEADOS" ToRole="USUARIOS" />
           <NavigationProperty Name="ORDENES_COMPRA" Relationship="Self.FK__ORDENES_C__ID_EM__09A971A2" FromRole="EMPLEADOS" ToRole="ORDENES_COMPRA" />
           <NavigationProperty Name="VENTAS" Relationship="Self.FK__VENTAS__ID_EMPLE__7B5B524B" FromRole="EMPLEADOS" ToRole="VENTAS" />
           <NavigationProperty Name="VISITAS" Relationship="Self.FK__VISITAS__ID_EMPL__04E4BC85" FromRole="EMPLEADOS" ToRole="VISITAS" />
+          <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="EMPLEADOS" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="ESTADOS_PROPIEDAD">
           <Key>
@@ -782,7 +850,7 @@
           <Property Name="ID_IMAGEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_PROPIEDAD" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PROPIEDADE" Relationship="Self.FK__IMAGENES___ID_PR__14270015" FromRole="IMAGENES_PROPIEDAD" ToRole="PROPIEDADES" />
+          <NavigationProperty Name="PROPIEDADE" Relationship="Self.FK__IMAGENES___ID_PR__0F624AF8" FromRole="IMAGENES_PROPIEDAD" ToRole="PROPIEDADES" />
         </EntityType>
         <EntityType Name="ORDENES_COMPRA">
           <Key>
@@ -796,6 +864,15 @@
           <NavigationProperty Name="DETALLES_ORDEN" Relationship="Self.FK__DETALLES___ID_OR__0C85DE4D" FromRole="ORDENES_COMPRA" ToRole="DETALLES_ORDEN" />
           <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__ORDENES_C__ID_EM__09A971A2" FromRole="ORDENES_COMPRA" ToRole="EMPLEADOS" />
           <NavigationProperty Name="PROVEEDORE" Relationship="Self.FK__ORDENES_C__ID_PR__08B54D69" FromRole="ORDENES_COMPRA" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="PERFIL">
+          <Key>
+            <PropertyRef Name="ID_PERFIL" />
+          </Key>
+          <Property Name="ID_PERFIL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAGINA_NAVEGAR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USUARIO_PERFIL" Relationship="Self.FK__USUARIO_P__ID_PE__1CBC4616" FromRole="PERFIL" ToRole="USUARIO_PERFIL" />
         </EntityType>
         <EntityType Name="PROPIEDADE">
           <Key>
@@ -820,7 +897,7 @@
           <NavigationProperty Name="CIUDADE" Relationship="Self.FK__PROPIEDAD__ID_CI__6B24EA82" FromRole="PROPIEDADES" ToRole="CIUDADES" />
           <NavigationProperty Name="CONSIGNACIONES" Relationship="Self.FK__CONSIGNAC__ID_PR__6EF57B66" FromRole="PROPIEDADES" ToRole="CONSIGNACIONES" />
           <NavigationProperty Name="ESTADOS_PROPIEDAD" Relationship="Self.FK__PROPIEDAD__ID_ES__6C190EBB" FromRole="PROPIEDADES" ToRole="ESTADOS_PROPIEDAD" />
-          <NavigationProperty Name="IMAGENES_PROPIEDAD" Relationship="Self.FK__IMAGENES___ID_PR__14270015" FromRole="PROPIEDADES" ToRole="IMAGENES_PROPIEDAD" />
+          <NavigationProperty Name="IMAGENES_PROPIEDAD" Relationship="Self.FK__IMAGENES___ID_PR__0F624AF8" FromRole="PROPIEDADES" ToRole="IMAGENES_PROPIEDAD" />
           <NavigationProperty Name="PROPIEDADES_MODELO" Relationship="Self.FK__PROPIEDAD__ID_PR__75A278F5" FromRole="PROPIEDADES" ToRole="PROPIEDADES_MODELO" />
           <NavigationProperty Name="TIPOS_PROPIEDAD" Relationship="Self.FK__PROPIEDAD__ID_TI__6A30C649" FromRole="PROPIEDADES" ToRole="TIPOS_PROPIEDAD" />
           <NavigationProperty Name="VENTAS" Relationship="Self.FK__VENTAS__ID_PROPI__797309D9" FromRole="PROPIEDADES" ToRole="VENTAS" />
@@ -918,11 +995,26 @@
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EMAIL" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CONTRASENA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ROL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECHA_REGISTRO" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK__EMPLEADOS__ID_US__151B244E" FromRole="USUARIOS" ToRole="EMPLEADOS" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLAVE" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SALT" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ES_EMPLEADO" Type="Boolean" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="Int32" />
+          <Property Name="ID_CLIENTE" Type="Int32" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_USUARIO_CLIENTE" FromRole="USUARIO" ToRole="CLIENTES" />
+          <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="USUARIO" ToRole="EMPLEADOS" />
+          <NavigationProperty Name="USUARIO_PERFIL" Relationship="Self.FK__USUARIO_P__ID_US__1BC821DD" FromRole="USUARIO" ToRole="USUARIO_PERFIL" />
+        </EntityType>
+        <EntityType Name="USUARIO_PERFIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="ID_PERFIL" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PERFIL" Relationship="Self.FK__USUARIO_P__ID_PE__1CBC4616" FromRole="USUARIO_PERFIL" ToRole="PERFIL" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__USUARIO_P__ID_US__1BC821DD" FromRole="USUARIO_PERFIL" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="VENTA">
           <Key>
@@ -1051,6 +1143,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USUARIO_CLIENTE">
+          <End Role="CLIENTES" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CONSIGNAC__ID_PR__6EF57B66">
           <End Role="PROPIEDADES" Type="Self.PROPIEDADE" Multiplicity="1" />
           <End Role="CONSIGNACIONES" Type="Self.CONSIGNACIONE" Multiplicity="*" />
@@ -1101,18 +1205,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMPLEADOS__ID_US__151B244E">
-          <End Role="USUARIOS" Type="Self.USUARIO" Multiplicity="0..1" />
-          <End Role="EMPLEADOS" Type="Self.EMPLEADO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIOS">
-              <PropertyRef Name="ID_USUARIO" />
-            </Principal>
-            <Dependent Role="EMPLEADOS">
-              <PropertyRef Name="ID_USUARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ORDENES_C__ID_EM__09A971A2">
           <End Role="EMPLEADOS" Type="Self.EMPLEADO" Multiplicity="1" />
           <End Role="ORDENES_COMPRA" Type="Self.ORDENES_COMPRA" Multiplicity="*" />
@@ -1149,6 +1241,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USUARIO_EMPLEADO">
+          <End Role="EMPLEADOS" Type="Self.EMPLEADO" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_EMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PROPIEDAD__ID_ES__6C190EBB">
           <End Role="ESTADOS_PROPIEDAD" Type="Self.ESTADOS_PROPIEDAD" Multiplicity="1" />
           <End Role="PROPIEDADES" Type="Self.PROPIEDADE" Multiplicity="*" />
@@ -1161,7 +1265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__IMAGENES___ID_PR__14270015">
+        <Association Name="FK__IMAGENES___ID_PR__0F624AF8">
           <End Role="PROPIEDADES" Type="Self.PROPIEDADE" Multiplicity="1" />
           <End Role="IMAGENES_PROPIEDAD" Type="Self.IMAGENES_PROPIEDAD" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1182,6 +1286,18 @@
             </Principal>
             <Dependent Role="ORDENES_COMPRA">
               <PropertyRef Name="ID_PROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO_P__ID_PE__1CBC4616">
+          <End Role="PERFIL" Type="Self.PERFIL" Multiplicity="1" />
+          <End Role="USUARIO_PERFIL" Type="Self.USUARIO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFIL">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="USUARIO_PERFIL">
+              <PropertyRef Name="ID_PERFIL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1269,7 +1385,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="INMOBILIARIAEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK__USUARIO_P__ID_US__1BC821DD">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO_PERFIL" Type="Self.USUARIO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="USUARIO_PERFIL">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INMOBILIARIAEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ARRIENDOS" EntityType="Self.ARRIENDO" />
           <EntitySet Name="CIUDADES" EntityType="Self.CIUDADE" />
           <EntitySet Name="CLIENTES" EntityType="Self.CLIENTE" />
@@ -1279,6 +1407,7 @@
           <EntitySet Name="ESTADOS_PROPIEDAD" EntityType="Self.ESTADOS_PROPIEDAD" />
           <EntitySet Name="IMAGENES_PROPIEDAD" EntityType="Self.IMAGENES_PROPIEDAD" />
           <EntitySet Name="ORDENES_COMPRA" EntityType="Self.ORDENES_COMPRA" />
+          <EntitySet Name="PERFILs" EntityType="Self.PERFIL" />
           <EntitySet Name="PROPIEDADES" EntityType="Self.PROPIEDADE" />
           <EntitySet Name="PROPIEDADES_MODELO" EntityType="Self.PROPIEDADES_MODELO" />
           <EntitySet Name="PROPIETARIOS" EntityType="Self.PROPIETARIO" />
@@ -1288,7 +1417,8 @@
           <EntitySet Name="TIPOS_PROPIEDAD" EntityType="Self.TIPOS_PROPIEDAD" />
           <EntitySet Name="TIPOS_PROVEEDOR" EntityType="Self.TIPOS_PROVEEDOR" />
           <EntitySet Name="TIPOS_VISITA" EntityType="Self.TIPOS_VISITA" />
-          <EntitySet Name="USUARIOS" EntityType="Self.USUARIO" />
+          <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
+          <EntitySet Name="USUARIO_PERFIL" EntityType="Self.USUARIO_PERFIL" />
           <EntitySet Name="VENTAS" EntityType="Self.VENTA" />
           <EntitySet Name="VISITAS" EntityType="Self.VISITA" />
           <AssociationSet Name="FK__ARRIENDOS__ID_EM__00200768" Association="Self.FK__ARRIENDOS__ID_EM__00200768">
@@ -1323,6 +1453,10 @@
             <End Role="CLIENTES" EntitySet="CLIENTES" />
             <End Role="VISITAS" EntitySet="VISITAS" />
           </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_CLIENTE" Association="Self.FK_USUARIO_CLIENTE">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+          </AssociationSet>
           <AssociationSet Name="FK__CONSIGNAC__ID_PR__6EF57B66" Association="Self.FK__CONSIGNAC__ID_PR__6EF57B66">
             <End Role="PROPIEDADES" EntitySet="PROPIEDADES" />
             <End Role="CONSIGNACIONES" EntitySet="CONSIGNACIONES" />
@@ -1339,10 +1473,6 @@
             <End Role="SEDES" EntitySet="SEDES" />
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
           </AssociationSet>
-          <AssociationSet Name="FK__EMPLEADOS__ID_US__151B244E" Association="Self.FK__EMPLEADOS__ID_US__151B244E">
-            <End Role="USUARIOS" EntitySet="USUARIOS" />
-            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
-          </AssociationSet>
           <AssociationSet Name="FK__ORDENES_C__ID_EM__09A971A2" Association="Self.FK__ORDENES_C__ID_EM__09A971A2">
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
             <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
@@ -1355,17 +1485,25 @@
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
             <End Role="VISITAS" EntitySet="VISITAS" />
           </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_EMPLEADO" Association="Self.FK_USUARIO_EMPLEADO">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+          </AssociationSet>
           <AssociationSet Name="FK__PROPIEDAD__ID_ES__6C190EBB" Association="Self.FK__PROPIEDAD__ID_ES__6C190EBB">
             <End Role="ESTADOS_PROPIEDAD" EntitySet="ESTADOS_PROPIEDAD" />
             <End Role="PROPIEDADES" EntitySet="PROPIEDADES" />
           </AssociationSet>
-          <AssociationSet Name="FK__IMAGENES___ID_PR__14270015" Association="Self.FK__IMAGENES___ID_PR__14270015">
+          <AssociationSet Name="FK__IMAGENES___ID_PR__0F624AF8" Association="Self.FK__IMAGENES___ID_PR__0F624AF8">
             <End Role="PROPIEDADES" EntitySet="PROPIEDADES" />
             <End Role="IMAGENES_PROPIEDAD" EntitySet="IMAGENES_PROPIEDAD" />
           </AssociationSet>
           <AssociationSet Name="FK__ORDENES_C__ID_PR__08B54D69" Association="Self.FK__ORDENES_C__ID_PR__08B54D69">
             <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
             <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO_P__ID_PE__1CBC4616" Association="Self.FK__USUARIO_P__ID_PE__1CBC4616">
+            <End Role="PERFIL" EntitySet="PERFILs" />
+            <End Role="USUARIO_PERFIL" EntitySet="USUARIO_PERFIL" />
           </AssociationSet>
           <AssociationSet Name="FK__PROPIEDAD__ID_PR__75A278F5" Association="Self.FK__PROPIEDAD__ID_PR__75A278F5">
             <End Role="PROPIEDADES" EntitySet="PROPIEDADES" />
@@ -1395,13 +1533,17 @@
             <End Role="TIPOS_VISITA" EntitySet="TIPOS_VISITA" />
             <End Role="VISITAS" EntitySet="VISITAS" />
           </AssociationSet>
+          <AssociationSet Name="FK__USUARIO_P__ID_US__1BC821DD" Association="Self.FK__USUARIO_P__ID_US__1BC821DD">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="USUARIO_PERFIL" EntitySet="USUARIO_PERFIL" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="INMOBILIARIAModelStoreContainer" CdmEntityContainer="INMOBILIARIAEntities">
+        <EntityContainerMapping StorageEntityContainer="INMOBILIARIAModelStoreContainer" CdmEntityContainer="INMOBILIARIAEntities1">
           <EntitySetMapping Name="ARRIENDOS">
             <EntityTypeMapping TypeName="INMOBILIARIAModel.ARRIENDO">
               <MappingFragment StoreEntitySet="ARRIENDOS">
@@ -1476,7 +1618,6 @@
                 <ScalarProperty Name="FECHA_INGRESO" ColumnName="FECHA_INGRESO" />
                 <ScalarProperty Name="SALARIO" ColumnName="SALARIO" />
                 <ScalarProperty Name="ID_SEDE" ColumnName="ID_SEDE" />
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1505,6 +1646,15 @@
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="FECHA_ORDEN" ColumnName="FECHA_ORDEN" />
                 <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERFILs">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.PERFIL">
+              <MappingFragment StoreEntitySet="PERFIL">
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="PAGINA_NAVEGAR" ColumnName="PAGINA_NAVEGAR" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1612,14 +1762,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="USUARIOS">
+          <EntitySetMapping Name="USUARIOs">
             <EntityTypeMapping TypeName="INMOBILIARIAModel.USUARIO">
-              <MappingFragment StoreEntitySet="USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIO">
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
-                <ScalarProperty Name="ROL" ColumnName="ROL" />
-                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="SALT" ColumnName="SALT" />
+                <ScalarProperty Name="ES_EMPLEADO" ColumnName="ES_EMPLEADO" />
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO_PERFIL">
+            <EntityTypeMapping TypeName="INMOBILIARIAModel.USUARIO_PERFIL">
+              <MappingFragment StoreEntitySet="USUARIO_PERFIL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -9,31 +9,21 @@
 
 namespace Proyecto_Final_API.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIO
+    public partial class PERFIL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USUARIO()
+        public PERFIL()
         {
             this.USUARIO_PERFIL = new HashSet<USUARIO_PERFIL>();
         }
     
-        public int ID_USUARIO { get; set; }
-        public string USERNAME { get; set; }
-        public string CLAVE { get; set; }
-        public string SALT { get; set; }
-        public bool ES_EMPLEADO { get; set; }
-        public Nullable<int> ID_EMPLEADO { get; set; }
-        public Nullable<int> ID_CLIENTE { get; set; }
-
-        [JsonIgnore]
-        public virtual CLIENTE CLIENTE { get; set; }
-        [JsonIgnore]
-        public virtual EMPLEADO EMPLEADO { get; set; }
-        [JsonIgnore]
+        public int ID_PERFIL { get; set; }
+        public string NOMBRE { get; set; }
+        public string PAGINA_NAVEGAR { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_PERFIL> USUARIO_PERFIL { get; set; }
     }

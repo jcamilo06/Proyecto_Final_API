@@ -20,6 +20,7 @@ namespace Proyecto_Final_API.Models
             this.ARRIENDOS = new HashSet<ARRIENDO>();
             this.VENTAS = new HashSet<VENTA>();
             this.VISITAS = new HashSet<VISITA>();
+            this.USUARIOs = new HashSet<USUARIO>();
         }
     
         public int ID_CLIENTE { get; set; }
@@ -37,5 +38,7 @@ namespace Proyecto_Final_API.Models
         public virtual ICollection<VENTA> VENTAS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VISITA> VISITAS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO> USUARIOs { get; set; }
     }
 }

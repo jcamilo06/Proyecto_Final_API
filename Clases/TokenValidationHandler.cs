@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Net;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Web;
 
-namespace Servicios_Jue.Clases
+namespace Proyecto_Final_API.Clases
 {
     public class TokenValidationHandler : DelegatingHandler
     {

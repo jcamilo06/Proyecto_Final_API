@@ -21,6 +21,7 @@ namespace Proyecto_Final_API.Models
             this.ORDENES_COMPRA = new HashSet<ORDENES_COMPRA>();
             this.VENTAS = new HashSet<VENTA>();
             this.VISITAS = new HashSet<VISITA>();
+            this.USUARIOs = new HashSet<USUARIO>();
         }
     
         public int ID_EMPLEADO { get; set; }
@@ -34,17 +35,17 @@ namespace Proyecto_Final_API.Models
         public System.DateTime FECHA_INGRESO { get; set; }
         public decimal SALARIO { get; set; }
         public int ID_SEDE { get; set; }
-        public Nullable<int> ID_USUARIO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ARRIENDO> ARRIENDOS { get; set; }
         public virtual SEDE SEDE { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDENES_COMPRA> ORDENES_COMPRA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VENTA> VENTAS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VISITA> VISITAS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO> USUARIOs { get; set; }
     }
 }

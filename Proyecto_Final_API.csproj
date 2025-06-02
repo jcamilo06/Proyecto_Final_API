@@ -218,8 +218,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Clases\clsCypher.cs" />
+    <Compile Include="Clases\clsLogin.cs" />
+    <Compile Include="Clases\clsUsuario.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
+    <Compile Include="Controllers\UsuarioSeedController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -268,6 +274,9 @@
     <Compile Include="Models\ORDENES_COMPRA.cs">
       <DependentUpon>INMOBILIARIAEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PERFIL.cs">
+      <DependentUpon>INMOBILIARIAEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PROPIEDADE.cs">
       <DependentUpon>INMOBILIARIAEntities.tt</DependentUpon>
     </Compile>
@@ -296,6 +305,9 @@
       <DependentUpon>INMOBILIARIAEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
+      <DependentUpon>INMOBILIARIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USUARIO_PERFIL.cs">
       <DependentUpon>INMOBILIARIAEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VENTA.cs">
@@ -342,13 +354,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\INMOBILIARIAEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>INMOBILIARIAEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\INMOBILIARIAEntities.edmx.diagram">
-      <DependentUpon>INMOBILIARIAEntities.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -368,6 +373,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <EntityDeploy Include="Models\INMOBILIARIAEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>INMOBILIARIAEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\INMOBILIARIAEntities.edmx.diagram">
+      <DependentUpon>INMOBILIARIAEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

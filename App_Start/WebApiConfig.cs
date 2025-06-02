@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
-using Servicios_Jue.Clases;
+using Proyecto_Final_API.Clases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,14 +24,16 @@ namespace Proyecto_Final_API
             json.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             json.SerializerSettings.ContractResolver = new DefaultContractResolver(); // <-- ESTA ES CLAVE
 
-            //Habilitar el esquema de autenticación, para la validación del token
+            // ✅ Validación de tokens para endpoints protegidos
             config.MessageHandlers.Add(new TokenValidationHandler());
-            // Rutas de Web API
+
+            // ✅ Rutas por atributo
             config.MapHttpAttributeRoutes();
 
+            // ✅ Ruta por defecto para compatibilidad
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

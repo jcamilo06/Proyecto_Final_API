@@ -13,10 +13,10 @@ namespace Proyecto_Final_API.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class INMOBILIARIAEntities : DbContext
+    public partial class INMOBILIARIAEntities1 : DbContext
     {
-        public INMOBILIARIAEntities()
-            : base("name=INMOBILIARIAEntities")
+        public INMOBILIARIAEntities1()
+            : base("name=INMOBILIARIAEntities1")
         {
         }
     
@@ -34,6 +34,7 @@ namespace Proyecto_Final_API.Models
         public virtual DbSet<ESTADOS_PROPIEDAD> ESTADOS_PROPIEDAD { get; set; }
         public virtual DbSet<IMAGENES_PROPIEDAD> IMAGENES_PROPIEDAD { get; set; }
         public virtual DbSet<ORDENES_COMPRA> ORDENES_COMPRA { get; set; }
+        public virtual DbSet<PERFIL> PERFILs { get; set; }
         public virtual DbSet<PROPIEDADE> PROPIEDADES { get; set; }
         public virtual DbSet<PROPIEDADES_MODELO> PROPIEDADES_MODELO { get; set; }
         public virtual DbSet<PROPIETARIO> PROPIETARIOS { get; set; }
@@ -43,7 +44,8 @@ namespace Proyecto_Final_API.Models
         public virtual DbSet<TIPOS_PROPIEDAD> TIPOS_PROPIEDAD { get; set; }
         public virtual DbSet<TIPOS_PROVEEDOR> TIPOS_PROVEEDOR { get; set; }
         public virtual DbSet<TIPOS_VISITA> TIPOS_VISITA { get; set; }
-        public virtual DbSet<USUARIO> USUARIOS { get; set; }
+        public virtual DbSet<USUARIO> USUARIOs { get; set; }
+        public virtual DbSet<USUARIO_PERFIL> USUARIO_PERFIL { get; set; }
         public virtual DbSet<VENTA> VENTAS { get; set; }
         public virtual DbSet<VISITA> VISITAS { get; set; }
     }
