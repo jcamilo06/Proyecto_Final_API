@@ -219,6 +219,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Clases\clsCONSIGNACIONE.cs" />
     <Compile Include="Clases\clsCypher.cs" />
     <Compile Include="Clases\clsDETALLES_ORDEN.cs" />
     <Compile Include="Clases\clsEMPLEADO.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Clases\clsPROPIEDADES_MODELO.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
+    <Compile Include="Controllers\CONSIGNACIONEsController.cs" />
     <Compile Include="Controllers\DETALLES_ORDENsController.cs" />
     <Compile Include="Controllers\EMPLEADOsController.cs" />
     <Compile Include="Controllers\ESTADOS_PROPIEDADsController.cs" />
@@ -422,6 +424,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\CONSIGNACIONEs\" />
     <Folder Include="Views\ESTADOS_PROPIEDADs\" />
     <Folder Include="Views\PROPIEDADEs\" />
     <Folder Include="Views\PROPIETARIOs\" />
