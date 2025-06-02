@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Proyecto_Final_API.Clases;
 using Proyecto_Final_API.Models;
+using System.Web.Http;
 
 namespace Proyecto_Final_API.Controllers
 {
@@ -38,7 +39,7 @@ namespace Proyecto_Final_API.Controllers
             return resultado.StartsWith("Error") ? (IHttpActionResult)BadRequest(resultado) : Ok(resultado);
         }
 
-        [HttpPut] git fetch origin
+        [HttpPut] 
         [Route("Actualizar")]
         public IHttpActionResult Actualizar([FromBody] PROPIEDADES_MODELO entidad)
         {

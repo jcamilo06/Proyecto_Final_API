@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Proyecto_Final_API.Models;
+using System.Data.Entity;
 
 namespace Proyecto_Final_API.Clases
 {
